@@ -36,3 +36,15 @@ git commit -m "Sync site from private repo docs/" && git push
 ```
 
 Use `--delete` only if you want the public repo to drop files removed from `docs/`.
+
+## Push fails: “Permission denied to Eckcotech” (or wrong GitHub user)
+
+Your global Git likely uses **`gh auth git-credential`**, which logs in as your personal account. This repo must authenticate as **ShelfHog**.
+
+Use this **exact** `origin` URL (note the `ShelfHog@` before `github.com`):
+
+```bash
+git remote set-url origin https://ShelfHog@github.com/ShelfHog/ShelfHog-Site.git
+```
+
+Point this clone at the same credential store as the private app repo (or run `ShelfHog/ShelfHog` → `scripts/setup-cursor-push-credentials.sh` once, then add the remote line above here).
